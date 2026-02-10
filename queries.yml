@@ -1,0 +1,5 @@
+query_ids:
+  - 5514812  # Leveraged Strategies Overview (Daily) - v3
+  - 5829876  # [Non-PT] Leveraged Strategies Overview (Daily) - v3
+  - 6164688  # Euler USD borrow rates (hourly)
+  - 6207402  # Morpho Selected Borrow Rates (Hourly)

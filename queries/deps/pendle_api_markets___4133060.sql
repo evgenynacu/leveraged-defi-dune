@@ -1,0 +1,6 @@
+-- Dune Query 4133060: pendle_api_markets
+-- https://dune.com/queries/4133060
+-- Author: @beacon_early (external dependency, read-only)
+--
+-- This query is owned by another user.
+-- SQL not extracted — view on Dune directly.
