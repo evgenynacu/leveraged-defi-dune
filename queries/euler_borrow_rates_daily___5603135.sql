@@ -43,11 +43,12 @@ with vaults as (
       from euler_v2_multichain.evault_evt_vaultstatus
       join vaults v on v.vault = contract_address and v.blockchain = chain
       join query_4941025 stables on stables.token_address = v.asset and stables.blockchain = v.blockchain
+     where evt_block_time > current_date - interval '4' month
 ), calendar AS (
     SELECT dt as day_start,
            dt + interval '1' day as day_end
       FROM
-    UNNEST(sequence(date '2025-01-01', current_date, INTERVAL '1' DAY)) t (dt)
+    UNNEST(sequence(current_date - interval '3' month, current_date, INTERVAL '1' DAY)) t (dt)
 ), overlaps AS (
   SELECT
       d.day_start,

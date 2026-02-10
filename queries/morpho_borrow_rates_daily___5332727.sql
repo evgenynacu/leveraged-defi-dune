@@ -28,12 +28,12 @@ WITH debt_tokens as (
            chain as blockchain,
            id as market_id
       FROM morpho_blue_multichain.morphoblue_evt_accrueinterest
-     WHERE evt_block_time > cast('2025-01-01' as timestamp)
+     WHERE evt_block_time > current_date - interval '4' month
 ), calendar AS (
     SELECT dt as day_start,
            dt + interval '1' day as day_end
       FROM
-    UNNEST(sequence(date '2025-01-01', current_date, INTERVAL '1' DAY)) t (dt)
+    UNNEST(sequence(current_date - interval '3' month, current_date, INTERVAL '1' DAY)) t (dt)
 ), overlaps AS (
   SELECT
       d.day_start,
