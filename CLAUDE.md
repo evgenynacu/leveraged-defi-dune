@@ -111,10 +111,21 @@ window.__fullSQL.substring(800, 1600)
 
 ### Writing SQL back (requires login)
 
-1. Click inside the editor
-2. Select all: Ctrl+A
-3. Type new SQL via type action
-4. Click "Save" button
+1. Copy new SQL to clipboard via `javascript_tool` (use `.then()`, not `await`):
+
+```javascript
+const sql = `...`;
+navigator.clipboard.writeText(sql).then(() => 'OK: ' + sql.length);
+```
+
+2. Click inside the editor
+3. Select all: Ctrl+A
+4. Paste: Ctrl+V
+5. Click "Save" or "Save and run" button
+
+**Why not `type` action**: detaches on long SQL (>2KB).
+**Why not CM dispatch**: `cmView.view` is not exposed on Dune.
+**Why `.then()` not `await`**: async clipboard API throws "Document is not focused" with `await`.
 
 ### Why this approach
 
