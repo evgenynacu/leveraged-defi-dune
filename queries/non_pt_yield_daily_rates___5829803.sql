@@ -145,6 +145,22 @@ with susde_rates as (
            'Reservoir' as yield_protocol,
            'USD' as base_currency
       from query_6256035
+), siusd_rates as (
+    select 'ethereum' as blockchain,
+           0xdbdc1ef57537e34680b898e1febd3d68c7389bcb as token,
+           ts_day,
+           daily_yield_rate,
+           'InfiniFi' as yield_protocol,
+           'USD' as base_currency
+      from query_6685146
+), susdd_rates as (
+    select 'ethereum' as blockchain,
+           0xC5d6A7B61d18AfA11435a889557b068BB9f29930 as token,
+           ts_day,
+           daily_yield_rate,
+           'USDD' as yield_protocol,
+           'USD' as base_currency
+      from query_6685310
 )
 select * from susde_rates
 union all
@@ -179,3 +195,7 @@ union all
 select * from stcusd_rates
 union all
 select * from syrup_usdt_rates
+union all
+select * from siusd_rates
+union all
+select * from susdd_rates

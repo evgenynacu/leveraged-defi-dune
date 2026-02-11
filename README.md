@@ -65,6 +65,8 @@ APR = 365 * (yield_rate − LTV * borrow_rate) / (1 − LTV)
       - sDAI yield rates (Daily) ([dune](https://dune.com/queries/5995196), [sql](queries/sdai_daily_yield_rate___5995196.sql))
       - stcUSD yield rates (Daily) ([dune](https://dune.com/queries/6231536), [sql](queries/stcusd_yield_rates_daily___6231536.sql))
       - wsrUSD yield rates (Daily) ([dune](https://dune.com/queries/6256035), [sql](queries/wsrusd_yield_rates_daily___6256035.sql))
+      - siUSD yield rates (Daily) ([dune](https://dune.com/queries/6685146), [sql](queries/siusd_yield_rates_daily___6685146.sql))
+      - sUSDD yield rates (Daily) ([dune](https://dune.com/queries/6685310), [sql](queries/susdd_yield_rates_daily___6685310.sql))
     - Borrow rates (Daily) `*` `[mv]`
 - **Euler USD borrow rates (hourly)** ([dune](https://dune.com/queries/6164688), [sql](queries/euler_usd_borrow_rates_hourly___6164688.sql))
   - USD stablecoins `*`
