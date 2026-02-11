@@ -62,6 +62,29 @@ Conventions:
 - Links shown only at first occurrence; subsequent mentions show just the name + markers
 - Dashboard-level queries in **bold**
 
+## Dune platform notes
+
+### Query engine sizes
+
+Run button dropdown lets you pick engine size:
+
+- **Small**: 120s timeout, 1x compute, standard queue (default)
+- **Medium**: Extended timeout, 1x compute, priority queue
+- **Large**: Extended timeout, 2x compute, priority queue (unavailable on current plan)
+
+### Saving queries
+
+A new query must be saved via the **Save** button (opens a dialog with name, description, folder). Without this, the query is "temporary" and other queries cannot reference it as `query_NNNNNN` — you'll get "query access error: the query is temporary".
+
+"Save and run" both saves the SQL and executes it. But the initial Save dialog must have been completed at least once.
+
+### Materialized views
+
+- **Create**: icon button in "Query results" section header (between grid/CSV icons), NOT in Query Settings dialog
+- **Table name**: `dune.{user}.result_{query_name}` (e.g., `dune.enacu.result_collateral_whitelist`)
+- **Refresh**: "Save and run" updates both query results and the materialized table. Can also set a scheduled refresh (weekly/daily).
+- **Use case**: break "too many stages" errors from deeply nested `query_NNNNNN` dependencies
+
 ## Reading SQL from Dune via Chrome extension
 
 Dune uses CodeMirror 6 with virtual scrolling — only visible lines are rendered in the DOM. Login status does not change the approach: SQL is not exposed via `__NEXT_DATA__`, global variables, textarea, or `cmView.view.state.doc` (private).
