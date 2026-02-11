@@ -2,7 +2,7 @@
 -- https://dune.com/queries/5333272
 
 with morpho_borrow_rates as (
-    select blockchain, day as ts_day, supply, borrow, liquidity, utilization, collateral_token, debt_token, max_ltv, borrow_rate, daily_borrow_rate, 'morpho' as lending_protocol, lending_protocol as lending_description, base_currency from query_5332727
+    select blockchain, day as ts_day, supply, borrow, liquidity, utilization, collateral_token, debt_token, max_ltv, borrow_rate, daily_borrow_rate, 'morpho' as lending_protocol, lending_protocol as lending_description, base_currency from dune.enacu.result_morpho_borrow_rates_daily
 ), aave_usd_borrow_rates as (
     select blockchain, ts_day, 0, 0, 0, 0, collateral_token, debt_token, max_ltv, borrow_rate, borrow_rate / 365, 'aave', 'Aave', 'USD' from query_5339567
 ), euler_borrow_rates as (

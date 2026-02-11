@@ -9,12 +9,7 @@ with vaults as (
 ), collateral_tokens as (
     select blockchain,
            token_address
-      from query_4941025
-     union all
-    select blockchain,
-           pt_address
-      from query_4133060
-     where position('USD' in asset_representation) <> 0
+      from dune.enacu.result_collateral_whitelist
 ), vault_collaterals_raw as (
     select cast(liquidationLTV as double) / 10000 as max_ltv,
            ltvs.chain as blockchain,

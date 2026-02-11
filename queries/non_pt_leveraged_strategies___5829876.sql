@@ -10,7 +10,7 @@ with raw_data as (
            AVG((daily_yield_rate - {{ltv}} * daily_borrow_rate) / (1 - {{ltv}})) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) as ma7_daily_strategy_apr,
            AVG((daily_yield_rate - {{ltv}} * daily_borrow_rate) / (1 - {{ltv}})) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) as ma30_daily_strategy_apr,
            AVG(daily_borrow_rate) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) as ma7_daily_borrow_rate,
-           AVG(daily_borrow_rate) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 30 PRECEDING AND CURRENT ROW) as ma30_daily_borrow_rate,
+           AVG(daily_borrow_rate) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) as ma30_daily_borrow_rate,
            max_ltv,
            utilization,
            supply,

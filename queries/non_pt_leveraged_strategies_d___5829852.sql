@@ -20,7 +20,7 @@ select yr.blockchain,
        utilization,
        br.base_currency
   from query_5829803 yr
-  join query_5333272 br on yr.ts_day = br.ts_day and yr.token = br.collateral_token
+  join dune.enacu.result_borrow_rates_daily br on yr.ts_day = br.ts_day and yr.token = br.collateral_token
        and br.base_currency = yr.base_currency and yr.blockchain = br.blockchain
   join tokens.erc20 dt on dt.contract_address = debt_token and dt.blockchain = br.blockchain
   join tokens.erc20 ct on ct.contract_address = collateral_token and ct.blockchain = br.blockchain

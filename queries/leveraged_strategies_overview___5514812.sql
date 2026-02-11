@@ -7,8 +7,8 @@ with raw_data as (
     select blockchain,
            collateral_token_symbol as yield_description,
            daily_borrow_rate,
-           AVG(daily_borrow_rate) OVER (PARTITION BY yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) as ma7_daily_borrow_rate,
-           AVG(daily_borrow_rate) OVER (PARTITION BY yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 30 PRECEDING AND CURRENT ROW) as ma30_daily_borrow_rate,
+           AVG(daily_borrow_rate) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) as ma7_daily_borrow_rate,
+           AVG(daily_borrow_rate) OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) as ma30_daily_borrow_rate,
            max_ltv,
            utilization,
            supply,
@@ -20,7 +20,7 @@ with raw_data as (
            liquidity_usd,
            implied_daily_rate,
            lending_protocol,
-           row_number() OVER (PARTITION BY yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day desc) as rn
+           row_number() OVER (PARTITION BY blockchain, yield_protocol, lending_protocol, lending_description, collateral_token, debt_token ORDER BY ts_day desc) as rn
       from raw_data d
      where (supply > 100000 or lending_protocol = 'aave' or base_currency = 'ETH')
 )

@@ -5,6 +5,8 @@ WITH debt_tokens as (
     select blockchain, token_address, 'USD' base_currency from query_4941025
     union all
     select 'ethereum', 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2, 'ETH'
+), collateral_whitelist as (
+    select blockchain, token_address from dune.enacu.result_collateral_whitelist
 ), markets as (
     select m.blockchain,
            m.market_id,
@@ -20,6 +22,10 @@ WITH debt_tokens as (
       join query_5358971 l on m.market_id = l.market_id and m.blockchain = l.blockchain
       join tokens.erc20 t on t.contract_address = m.debt_token and t.blockchain = m.blockchain
       join debt_tokens dt on dt.token_address = m.debt_token and dt.blockchain = m.blockchain
+      join collateral_whitelist cw on cw.token_address = m.collateral_token
+                                  and cw.blockchain = m.blockchain
+), filtered_market_ids as (
+    select distinct blockchain, market_id from markets
 ), intervals AS (
     SELECT prevBorrowRate / pow(10, 18) * 365 * 86400 AS borrow_rate,
            prevBorrowRate / pow(10, 18) * 86400 AS daily_borrow_rate,
@@ -28,6 +34,7 @@ WITH debt_tokens as (
            chain as blockchain,
            id as market_id
       FROM morpho_blue_multichain.morphoblue_evt_accrueinterest
+      JOIN filtered_market_ids fm ON fm.market_id = id AND fm.blockchain = chain
      WHERE evt_block_time > current_date - interval '4' month
 ), calendar AS (
     SELECT dt as day_start,

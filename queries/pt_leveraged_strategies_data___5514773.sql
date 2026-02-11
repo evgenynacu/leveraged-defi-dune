@@ -10,6 +10,8 @@ with pendle_usd_rates as (
            liquidity_usd,
            exp(implied_apy / 365) - 1 as implied_daily_rate
       from query_4133060
+     where expiry > current_date
+       and is_active = true
     -- select blockchain,
     --        pt_address as token,
     --        ts_day,
@@ -41,7 +43,7 @@ with pendle_usd_rates as (
        liquidity_usd,
        implied_daily_rate
   from pendle_usd_rates yr
-  join query_5333272 br on
+  join dune.enacu.result_borrow_rates_daily br on
     yr.token = br.collateral_token and
     yr.base_currency = br.base_currency and
     yr.blockchain = br.blockchain

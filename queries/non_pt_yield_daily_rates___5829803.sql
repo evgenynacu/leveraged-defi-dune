@@ -6,7 +6,7 @@ with susde_rates as (
            0x9D39A5DE30e57443BfF2A8307A4256c8797A3497 as token,
            ts_day,
            daily_yield_rate,
-           'Ethene' as yield_protocol,
+           'Ethena' as yield_protocol,
            'USD' as base_currency
       from query_5340278
 ), susde_arb_rates as (
@@ -14,7 +14,7 @@ with susde_rates as (
            0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2 as token,
            ts_day,
            daily_yield_rate,
-           'Ethene' as yield_protocol,
+           'Ethena' as yield_protocol,
            'USD' as base_currency
       from query_5340278
 ), dex_susde_rates as (
@@ -22,7 +22,7 @@ with susde_rates as (
            0x9D39A5DE30e57443BfF2A8307A4256c8797A3497 as token,
            ts_day,
            daily_yield_rate,
-           'Ethene' as yield_protocol,
+           'Ethena' as yield_protocol,
            'USD' as base_currency
       from query_5829927
 ), srusd_rates as (
