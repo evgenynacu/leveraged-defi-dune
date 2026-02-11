@@ -51,7 +51,7 @@ WITH included as (
            chain as blockchain,
            id as market_id
       FROM morpho_blue_multichain.morphoblue_evt_accrueinterest
-     WHERE evt_block_time > cast('2025-01-01' as timestamp)
+     WHERE evt_block_time > current_date - interval '2' month
 ), calendar AS (
     SELECT dt as day_start,
            dt + interval '1' hour as day_end

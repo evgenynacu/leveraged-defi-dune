@@ -5,12 +5,12 @@ with day_bounds AS (
   SELECT dt as day_start,
          dt + interval '1' day as day_end
       FROM
-    UNNEST(sequence(date '2025-01-01', current_date, INTERVAL '1' DAY)) t (dt)
+    UNNEST(sequence(current_date - interval '3' month, current_date, INTERVAL '1' DAY)) t (dt)
 ), raw_data as (
     select cast(assets as double) / cast(shares as double) as rate,
            evt_block_time
       from sky_ethereum.susds_evt_withdraw
-     where evt_block_time > cast('2025-01-01' as timestamp)
+     where evt_block_time > current_date - interval '4' month
 ), data as (
     select rate,
            evt_block_time,
