@@ -78,6 +78,24 @@ with daily_rates as (
     union all
     select 0xe8483517077afa11a9b07f849cee2552f040d7b2 as collateral_token, 0x4c9edd5852cd905f086c759e8383e09bff1e68b3 as debt_token, 0.92 as max_ltv /* USDe */
     union all
+    /* PT-sUSDE-7MAY2026 */
+    select 0x3de0ff76e8b528c092d47b9dac775931cef80f49 as collateral_token, 0xdAC17F958D2ee523a2206206994597C13D831ec7 as debt_token, 0.92 as max_ltv /* USDT */
+    union all
+    select 0x3de0ff76e8b528c092d47b9dac775931cef80f49 as collateral_token, 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 as debt_token, 0.92 as max_ltv /* USDC */
+    union all
+    select 0x3de0ff76e8b528c092d47b9dac775931cef80f49 as collateral_token, 0xC139190F447e929f090Edeb554D95AbB8b18aC1C as debt_token, 0.92 as max_ltv /* USDtb */
+    union all
+    select 0x3de0ff76e8b528c092d47b9dac775931cef80f49 as collateral_token, 0x4c9edd5852cd905f086c759e8383e09bff1e68b3 as debt_token, 0.92 as max_ltv /* USDe */
+    union all
+    /* PT-USDE-7MAY2026 */
+    select 0xaebf0bb9f57e89260d57f31af34eb58657d96ce0 as collateral_token, 0xdAC17F958D2ee523a2206206994597C13D831ec7 as debt_token, 0.92 as max_ltv /* USDT */
+    union all
+    select 0xaebf0bb9f57e89260d57f31af34eb58657d96ce0 as collateral_token, 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 as debt_token, 0.92 as max_ltv /* USDC */
+    union all
+    select 0xaebf0bb9f57e89260d57f31af34eb58657d96ce0 as collateral_token, 0xC139190F447e929f090Edeb554D95AbB8b18aC1C as debt_token, 0.92 as max_ltv /* USDtb */
+    union all
+    select 0xaebf0bb9f57e89260d57f31af34eb58657d96ce0 as collateral_token, 0x4c9edd5852cd905f086c759e8383e09bff1e68b3 as debt_token, 0.92 as max_ltv /* USDe */
+    union all
     /*sUSDe*/
     select 0x9D39A5DE30e57443BfF2A8307A4256c8797A3497 as collateral_token, 0xdAC17F958D2ee523a2206206994597C13D831ec7 as debt_token, 0.9 as max_ltv /* USDT */
     union all

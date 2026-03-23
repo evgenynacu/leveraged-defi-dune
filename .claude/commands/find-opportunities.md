@@ -166,7 +166,6 @@ Cross-check these known protocols against findings. If any are missing from API 
 - sUSDf (Falcon Finance) — delta-neutral, ERC-4626, large TVL
 - lvlUSD / slvlUSD (Level) — DeFi-native yield
 - stUSDS (Sky) — risk capital staking, distinct from sUSDS
-- siUSD (InfiniFi) — fractional reserve, ERC-4626
 - sNUSD (Neutrl) — OTC arbitrage yield
 - sUSN (Noon) — delta-neutral + T-bills
 - sfrxUSD (Frax) — ERC-4626 vault
@@ -243,7 +242,7 @@ For each Type A finding (new yield token), search the web to understand:
 - Current TVL and APY
 - Any red flags (depegs, exploits, wind-downs, regulatory issues)
 
-**Known tokens to AVOID**: See [`avoid-list.md`](../../avoid-list.md) for the full list with detailed reasons and sources. Currently includes: USD0++ (Usual), deUSD/sdeUSD (Elixir), USDM (Mountain), sUSDD (USDD 2.0), K (Kinto), xUSD (Stream Finance).
+**Known tokens to AVOID**: See [`avoid-list.md`](../../avoid-list.md) for the full list with detailed reasons and sources.
 
 When you discover a new token that should be avoided, add it to `avoid-list.md` following the template there.
 

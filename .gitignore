@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 .idea
+.playwright-mcp
+browser-profile
+dune_exports
