@@ -7,13 +7,13 @@ with day_bounds AS (
       FROM
     UNNEST(sequence(current_date - interval '3' month, current_date, INTERVAL '1' DAY)) t (dt)
 ), raw_data as (
-    -- select cast(assets as double) / cast(shares as double) as rate,
-    --        evt_block_time
-    --   from ethena_labs_ethereum.stakedusdev2_evt_deposit
-    -- union all
     select cast(assets as double) / cast(shares as double) as rate,
            evt_block_time
-      from ethena_labs_ethereum.stakedusdev2_evt_withdraw
+      from ethena_labs_ethereum.stakedusdev2_evt_deposit
+    -- union all
+    -- select cast(assets as double) / cast(shares as double) as rate,
+    --        evt_block_time
+    --   from ethena_labs_ethereum.stakedusdev2_evt_withdraw
 ), data as (
     select rate,
            evt_block_time,

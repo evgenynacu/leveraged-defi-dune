@@ -8,6 +8,9 @@ WITH debt_tokens as (
 ), collateral_whitelist as (
     select blockchain, token_address from dune.enacu.result_collateral_whitelist
 ), markets as (
+    -- Chain literals are repeated inline (not joined from debt_tokens) so Trino can
+    -- constant-fold them and prune branches of the morpho_blue_multichain union views.
+    -- Keep in sync with the chains in query_4941025 (USD stablecoins).
     select m.blockchain,
            m.market_id,
            collateral_token,
@@ -18,8 +21,11 @@ WITH debt_tokens as (
            cast(liquidity as double) / pow(10, t.decimals) as liquidity,
            utilization,
            base_currency
-      from query_4939233 m
-      join query_5358971 l on m.market_id = l.market_id and m.blockchain = l.blockchain
+      from (select * from query_4939233
+             where blockchain in ('ethereum', 'arbitrum', 'plasma')) m
+      join (select * from query_5358971
+             where blockchain in ('ethereum', 'arbitrum', 'plasma')) l
+        on m.market_id = l.market_id and m.blockchain = l.blockchain
       join tokens.erc20 t on t.contract_address = m.debt_token and t.blockchain = m.blockchain
       join debt_tokens dt on dt.token_address = m.debt_token and dt.blockchain = m.blockchain
       join collateral_whitelist cw on cw.token_address = m.collateral_token
@@ -36,6 +42,7 @@ WITH debt_tokens as (
       FROM morpho_blue_multichain.morphoblue_evt_accrueinterest
       JOIN filtered_market_ids fm ON fm.market_id = id AND fm.blockchain = chain
      WHERE evt_block_time > current_date - interval '4' month
+       AND chain in ('ethereum', 'arbitrum', 'plasma')
 ), calendar AS (
     SELECT dt as day_start,
            dt + interval '1' day as day_end
